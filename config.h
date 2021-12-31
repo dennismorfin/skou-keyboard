@@ -1,22 +1,46 @@
+// config.h esta en lenguaje C
+
+// kb: crkbd
+// km: skou
+
 #pragma once
 
-#define MASTER_LEFT
-// #define MASTER_RIGHT
+#define EE_HANDS
+#define SPLIT_USB_DETECT
 
 #undef USE_I2C
 #undef SSD1306OLED
 
 #define USE_SERIAL_PD2
 
-#define TAPPING_TERM 190
 #define IGNORE_MOD_TAP_INTERRUPT
+#define PERMISSIVE_HOLD
+#define TAPPING_TERM 190
+
+#define NO_ACTION_ONESHOT
+
+#ifdef AUDIO_ENABLE
+#    define AUDIO_PIN B5
+#    define NO_MUSIC_MODE
+#    define AUDIO_CLICKY
+#endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
 
+#define RGBLIGHT_SLEEP
+
+#ifdef RGBLIGHT_ENABLE
+#    undef RGBLED_NUM
+#    define RGBLED_NUM 6
+#    define RGBLIGHT_LIMIT_VAL 150
+#    define RGBLIGHT_HUE_STEP 16
+#    define RGBLIGHT_SAT_STEP 32
+#    define RGBLIGHT_VAL_STEP 32
+#endif
+
 #ifdef RGB_MATRIX_ENABLE
-    #   define  RGBLED_NUM 54
+    #   define RGBLED_NUM 54
     #   define RGB_MATRIX_KEYPRESSES RGB_MATRIX_MULTISPLASH // reacts to keypresses
-    // #   define RGB_MATRIX_KEYRELEASES RGB_MATRIX_SPLASH// reacts to keyreleases (instead of keypresses)
     #   define RGB_DISABLE_AFTER_TIMEOUT 0 // number of ticks to wait until disabling effects
     #   define RGB_DISABLE_WHEN_USB_SUSPENDED true // turn off effects when suspended
     #   define RGB_MATRIX_LED_PROCESS_LIMIT (DRIVER_LED_TOTAL + 4) / 5 // limits the number of LEDs to process in an animation per task run (increases keyboard responsiveness)
@@ -38,3 +62,7 @@
     #   define ENABLE_RGB_MATRIX_MULTISPLASH
 
 #endif
+
+#define NO_ACTION_MACRO     // ya que tengo EXTRAFLAGS += -flto en rules.mk
+
+#define NO_ACTION_FUNCTION  // ya que tengo EXTRAFLAGS += -flto en rules.mk
