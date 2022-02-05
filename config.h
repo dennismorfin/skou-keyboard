@@ -64,5 +64,4 @@
 #endif
 
 #define NO_ACTION_MACRO     // ya que tengo EXTRAFLAGS += -flto en rules.mk
-
 #define NO_ACTION_FUNCTION  // ya que tengo EXTRAFLAGS += -flto en rules.mk
