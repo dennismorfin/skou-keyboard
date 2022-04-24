@@ -6,6 +6,32 @@
 #    include "rgb.c"
 #endif
 
+enum custom_keycodes {
+   DOFUS = SAFE_RANGE,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+   switch (keycode) {
+      case DOFUS:
+         if (record->event.pressed) {
+            // when keycode DOFUS is pressed
+            SEND_STRING( SS_DOWN(KC_LGUI) SS_TAP(KC_TAB) SS_TAP(KC_TAB) SS_TAP(KC_TAB) SS_TAP(KC_TAB) SS_TAP(KC_TAB) SS_TAP(KC_TAB) SS_TAP(KC_TAB) SS_TAP(KC_TAB) );
+         } else {
+            // when keycode DOFUS is released
+            clear_keyboard();
+         }
+         break;
+   }
+   return true;
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [0] = {
+        {QMKBEST, KC_ESC},
+        // ...
+    },
+};
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_split_3x6_3(
@@ -16,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //---------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      TD(TD_CAPLOCK), KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,                 KC_N,    KC_M,      KC_COMM, KC_DOT,  TD(TD_SLA), RGB_MOD,
   //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                KC_LGUI, LT(_LOWER,KC_ENT), KC_LSFT,   KC_SPC, LT(_RAISE,KC_ENT), TD(TD_ALT)
+                     KC_LGUI, LT(_LOWER,KC_ENT), LT(KC_LSFT,DOFUS),   KC_SPC, LT(_RAISE,KC_ENT), TD(TD_ALT)
                                       //|--------------------------|  |--------------------------|
   ),
 
