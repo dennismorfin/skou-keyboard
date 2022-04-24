@@ -20,7 +20,28 @@ enum {
     TD_GRV
 };
 
-enum custom_keycodes { QWERTY = SAFE_RANGE, LOWER, RAISE, RGBRST };
+enum custom_keycodes {
+    QWERTY = SAFE_RANGE,
+    LOWER,
+    RAISE,
+    RGBRST,
+    DOFUS
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+   switch (keycode) {
+      case DOFUS:
+         if (record->event.pressed) {
+            // when keycode DOFUS is pressed
+            SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB));
+         } else {
+            // when keycode DOFUS is released
+            clear_keyboard();
+         }
+         break;
+   }
+   return true;
+};
 
 #define SFT_EQ MT(MOD_LSFT, KC_EQL)
 #define SFT_QT MT(MOD_RSFT, KC_QUOT)
