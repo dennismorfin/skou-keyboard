@@ -24,24 +24,88 @@ enum custom_keycodes {
     QWERTY = SAFE_RANGE,
     LOWER,
     RAISE,
-    RGBRST
-    // DOFUS
+    RGBRST,
+    DOFUS,
+    ETOPEN,
+    ETCLOUSE,
+    SELECC,
+    LLAVES
 };
 
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//    switch (keycode) {
-//       case DOFUS:
-//          if (record->event.pressed) {
-//             // when keycode DOFUS is pressed
-//             SEND_STRING(SS_DOWN(X_LGUI) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB));
-//          } else {
-//             // when keycode DOFUS is released
-//             clear_keyboard();
-//          }
-//          break;
-//    }
-//    return true;
-// };
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+   switch (keycode) {
+        case DOFUS:
+            if (record->event.pressed) {
+                // when keycode DOFUS is pressed
+                SEND_STRING(
+                    SS_DOWN(X_LGUI) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB) SS_TAP(X_TAB)
+                );
+            } else {
+                // when keycode DOFUS is released
+                clear_keyboard();
+            }
+        break;
+
+        case ETOPEN:
+            if (record->event.pressed) {
+                SEND_STRING(
+                    SS_DOWN(X_LSFT)
+                    SS_TAP(X_COMM)
+                    SS_TAP(X_DOT)
+                );
+            } else {
+                clear_keyboard();
+                SEND_STRING(SS_TAP(X_LEFT));
+                // < + LEFT>
+            }
+        break;
+
+        case ETCLOUSE:
+            if (record->event.pressed) {
+                SEND_STRING(
+                    SS_DOWN(X_LSFT)
+                    SS_TAP(X_COMM)
+                    SS_TAP(X_SLSH)
+                    SS_TAP(X_DOT)
+                );
+            } else {
+                clear_keyboard();
+                SEND_STRING(SS_TAP(X_LEFT));
+                // </ + LEFT>
+            }
+        break;
+
+        case SELECC:
+            if (record->event.pressed) {
+                SEND_STRING(
+                    SS_DOWN(X_LGUI)
+                    SS_TAP(X_LSFT)
+                    SS_TAP(X_C)
+                    // CMD^C
+                );
+            } else {
+                clear_keyboard();
+            }
+        break;
+
+        case LLAVES:
+            if (record->event.pressed) {
+                SEND_STRING(
+                    SS_DOWN(X_LSFT)
+                    SS_TAP(X_LBRC)
+                );
+            } else {
+                clear_keyboard();
+                SEND_STRING(
+                    SS_TAP(X_ENT)
+                    SS_TAP(X_TAB)
+                    // { ENTER + TAB }
+                );
+            }
+        break;
+   }
+   return true;
+};
 
 #define SFT_EQ MT(MOD_LSFT, KC_EQL)
 #define SFT_QT MT(MOD_RSFT, KC_QUOT)
@@ -66,7 +130,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_PC] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, LSFT(KC_SCLN)),
     [TD_COMI] = ACTION_TAP_DANCE_DOUBLE(KC_QUOT, LSFT(KC_QUOT)),
     [TD_SLA] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, LSFT(KC_SLSH)),
-    [TD_CAPLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_CAPS),
+    [TD_CAPLOCK] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
     [TD_ALT] = ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_LALT),
     [TD_LBRC] = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, LSFT(KC_LBRC)),
     [TD_RBRC] = ACTION_TAP_DANCE_DOUBLE(KC_RBRC, LSFT(KC_RBRC)),

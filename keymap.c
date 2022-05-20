@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      XXXXXXX, KC_LCTL, KC_F5,  KC_LSFT, KC_VOLU,  KC_COPY,                       KC_PASTE,  KC_UP,  KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     XXXXXXX, XXXXXXX, XXXXXXX, TD(TD_ALT), KC_VOLD, XXXXXXX,                    KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX, XXXXXXX,
+     XXXXXXX, XXXXXXX, TD(TD_ALT),  SELECC , KC_VOLD, XXXXXXX,                    KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          KC_LGUI, XXXXXXX, KC_LSFT,    KC_SPC,  XXXXXXX, TD(TD_ALT)
                                       //|--------------------------|  |--------------------------|
@@ -36,16 +36,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    //|-----------------------------------------------------|                    |-----------------------------------------------------|
      KC_ESC, TD(TD_LBRC), TD(TD_RBRC), TD(TD_BSLS), XXXXXXX, XXXXXXX,           TD(TD_MINS), TD(TD_EQL), TD(TD_GRV), XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     RGB_HUI, RGB_SAI, RGB_VAI, KC_LSFT, XXXXXXX, RGB_TOG,                      RGB_SPI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, BL_TOGG,
+     RGB_HUI, LLAVES , RGB_VAI, KC_LSFT, XXXXXXX, RGB_TOG,                      RGB_SPI, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, BL_TOGG,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, RGB_MOD,                      RGB_SPD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+     RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, RGB_MOD,                      RGB_SPD, XXXXXXX,  ETOPEN , ETCLOUSE , XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, LOWER, KC_LSFT,    KC_SPC, KC_TRNS, KC_RALT
                                       //|--------------------------|  |--------------------------|
   ),
 
 };
-// clang-format off
 
 #if defined(RGBLIGHT_ENABLE) || defined(RGB_MATRIX_ENABLE)
 layer_state_t layer_state_set_user(layer_state_t state) {
