@@ -65,12 +65,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(
                     SS_DOWN(X_LSFT)
                     SS_TAP(X_COMM)
-                    SS_TAP(X_SLSH)
                     SS_TAP(X_DOT)
                 );
             } else {
                 clear_keyboard();
-                SEND_STRING(SS_TAP(X_LEFT));
+                SEND_STRING(
+                    SS_TAP(X_LEFT)
+                    SS_TAP(X_SLSH)
+                );
                 // </ + LEFT>
             }
         break;
@@ -79,8 +81,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 SEND_STRING(
                     SS_DOWN(X_LGUI)
-                    SS_TAP(X_LSFT)
-                    SS_TAP(X_C)
+                    SS_DOWN(X_LSFT)
+                    SS_DOWN(X_C)
                     // CMD^C
                 );
             } else {
